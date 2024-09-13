@@ -20,9 +20,11 @@ def update_wireframe(obj):
 
         with open(output_file_path, 'w') as outfile:
             json.dump(wireframe_data, outfile, indent=4)
+        
+        print(f"Wireframe data successfully updated at {output_file_path}")
 
-def object_move_handler(scene):
+def frame_change_handler(scene):
     if bpy.context.active_object:
         update_wireframe(bpy.context.active_object)
 
-bpy.app.handlers.depsgraph_update_post.append(object_move_handler)
+bpy.app.handlers.frame_change_pre.append(frame_change_handler)
