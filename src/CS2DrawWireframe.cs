@@ -69,7 +69,7 @@ namespace CS2DrawWireframe
             string wireframeFileName = "CS2DrawWireframe/wireframe.json";
             wireframeFilePath = Path.Join(gameDir + "/csgo/cfg", wireframeFileName);
 
-            AddTimer(0.05f, () =>
+            AddTimer(0.0625f, () =>
             {
                 if (timerShouldDoTimerStuff && globalOffset != null)
                 {
@@ -159,7 +159,7 @@ namespace CS2DrawWireframe
             }
 
             beam.Render = Color.FromName("white");
-            beam.Width = 0.1f;
+            beam.Width = 0.5f;
 
             beam.Teleport(startPos, new QAngle(0, 0, 0), new Vector(0, 0, 0));
 
@@ -177,7 +177,7 @@ namespace CS2DrawWireframe
         public void CreateWireframeAtPlayer(CCSPlayerController? player, CommandInfo command)
         {
             beamManager.RemoveAllBeams();
-            if (globalOffset == null) globalOffset = new Vector(player?.PlayerPawn?.Value!.AbsOrigin!.X, player?.PlayerPawn?.Value!.AbsOrigin!.Y, player?.PlayerPawn?.Value!.AbsOrigin!.Z);
+            globalOffset = new Vector(player?.PlayerPawn?.Value!.AbsOrigin!.X, player?.PlayerPawn?.Value!.AbsOrigin!.Y, player?.PlayerPawn?.Value!.AbsOrigin!.Z);
 
             _ = Task.Run(async () =>
             {
